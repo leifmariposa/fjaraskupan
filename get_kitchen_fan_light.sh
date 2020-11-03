@@ -14,6 +14,8 @@
 # gatttool -b 00:1E:C0:57:41:35 --char-read -a 0x000B
 # It returns something like this:
 # Characteristic value/descriptor: 31 32 33 34 30 4c 5f 5f 5f 5f 30 31 30 30 30
+#                                                                --------
+# Light value -------------------------------------------------------|
 # E. g. in this case 30 31 30 equals 010 %.
 #
 # The script returns the brightness, 0 - 255

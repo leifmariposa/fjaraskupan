@@ -10,13 +10,14 @@
 # The script depends on mac.sh which should have the MAC address of the Fjäråskupan 
 # set. The MAC address can be obtained with e. g. Bluetooth Mac Finder for Android.
 #
-# Command to set the light look like this:
-# gatttool -b 00:1E:C0:57:41:35 --char-write-req -a 0x000B -n 313233342d44696d3130302d
+# Command to set the fan speed look like this:
+# gatttool -b 00:1E:C0:57:41:35 --char-write-req -a 0x000B -n 313233342d4c7566742d342d
 # The hexadecimal string at the end of the command is the actual data sent to 
-# Fjäråskupan. The second to last three values, 313030, is the light value in percent, 
-# in this case 313030 equals 100 %.
+# Fjäråskupan. The second to last value, 34, is the fan speed value, 
+# in this case 34 equals 4.
+# To turn the fan off, there's a different command, 313233344c7566742d417573.
 #
-# The script takes one parameter, brightness 0 - 255
+# The script takes one parameter, fan speed value 0 - 8
 #
 
 if [ -z "$1" ]; then
@@ -25,11 +26,11 @@ fi
 
 re='^[0-9]+$'
 if ! [[ $1 =~ $re ]]; then
-   echo "error: Light value has to be a number"; exit 1
+   echo "error: Fan speed value has to be a number"; exit 1
 fi
 
-if [ $1 -gt 255 ]; then
-   echo "error: Light value has to be in the interval 0 - 100%"; exit 1
+if [ $1 -gt 8 ]; then
+   echo "error: Fan speed value has to be in the interval 0 - 8"; exit 1
 fi
 
 # include the mac address
