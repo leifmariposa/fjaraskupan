@@ -1,4 +1,4 @@
-# Integration of Fjäråskupan to Home Assistant
+# Integration of Fjäråskupan (a kitchen fan) to Home Assistant
 
 https://www.fjaraskupan.se/
 
