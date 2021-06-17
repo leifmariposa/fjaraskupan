@@ -35,6 +35,7 @@ while [ $retries -lt 20 ]; do
     value=$(echo "$value" | sed -r 's| |\\x|g') # escape each value vith \x
     value=$(echo -e $value) # convert to ascii
     value=$(($value)) # convert to integer
+    #echo $(date -u) "get_kitchen_fan.sh $result - $value" >> /home/pi/bluetooth/fan.log
     echo $value
     exit 0
   fi

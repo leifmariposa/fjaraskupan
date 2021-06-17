@@ -1,7 +1,7 @@
 sensor:
   - platform: command_line
     name: kitchen_fan_light
-    command: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa pi@192.168.1.37 /home/pi/bluetooth/get_kitchen_fan_light.sh"
+    command: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa pi@192.168.1.37 '/home/pi/bluetooth/get_kitchen_fan_light.sh'"
 
 light:
   - platform: template
@@ -34,5 +34,4 @@ light:
             entity_id: sensor.kitchen_fan_light
 
 shell_command:
-  set_kitchen_fan_light: ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa pi@192.168.1.37 /home/pi/bluetooth/set_kitchen_fan_light.sh {{ value }}
-  
+  set_kitchen_fan_light: ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa pi@192.168.1.37 "/home/pi/bluetooth/set_kitchen_fan_light.sh {{ value }}"

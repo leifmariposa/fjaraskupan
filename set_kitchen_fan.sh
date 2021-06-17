@@ -49,6 +49,7 @@ while [ $retries -lt 20 ]; do
   let retries=retries+1 
   if [ "$result" == "Characteristic value was written successfully" ]; then
     # success
+    #echo $(date -u) "set_kitchen_fan.sh $1 - $command" >> /home/pi/bluetooth/fan.log
     exit 0
   fi
 done

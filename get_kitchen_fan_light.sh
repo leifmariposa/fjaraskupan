@@ -21,6 +21,8 @@
 # The script returns the brightness, 0 - 255
 #
 
+#echo $(date -u) "get_kitchen_fan_light.sh $1" >> /home/pi/bluetooth/fan_light.log
+
 # include the mac address
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 . $dir/mac_address.sh
@@ -37,6 +39,7 @@ while [ $retries -lt 20 ]; do
     value=$(echo $value | sed 's/^0*//') # remove leading zeroes
     value=$(($value)) # convert to integer
     value=$(bc <<< $value*2.55/1) # scale to 0 - 255
+    #echo $(date -u) "get_kitchen_fan_light.sh $result - $value" >> /home/pi/bluetooth/fan_light.log
     echo $value
     exit 0
   fi

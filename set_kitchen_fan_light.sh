@@ -19,6 +19,8 @@
 # The script takes one parameter, brightness 0 - 255
 #
 
+#echo $(date -u) "set_kitchen_fan_light.sh $1" >> /home/pi/bluetooth/fan_light.log
+
 if [ -z "$1" ]; then
     echo "error: No argument supplied"; exit 1
 fi
@@ -43,13 +45,14 @@ d2=$(echo $percent_string | cut -c2) # get second digit
 d3=$(echo $percent_string | cut -c3) # get third digit
 
 command=$(echo "313233342d44696d3"$d1"3"$d2"3"$d3"2d") # create set light command to Fjäråskupan
-
+#echo $command >> /home/pi/bluetooth/log
 retries=0
 while [ $retries -lt 20 ]; do
   result=$(timeout 0.6 gatttool -b $mac_address --char-write-req -a 0x000B -n $command 2>&1)
   let retries=retries+1 
   if [ "$result" == "Characteristic value was written successfully" ]; then
     # success
+    #echo $(date -u) "set_kitchen_fan_light.sh $1 - $command" >> /home/pi/bluetooth/fan_light.log
     exit 0
   fi
 done
