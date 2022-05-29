@@ -44,7 +44,11 @@ d1=$(echo $percent_string | cut -c1) # get first digit
 d2=$(echo $percent_string | cut -c2) # get second digit
 d3=$(echo $percent_string | cut -c3) # get third digit
 
-command=$(echo "313233342d44696d3"$d1"3"$d2"3"$d3"2d") # create set light command to Fjäråskupan
+command=$(echo "313233344B6F636866656C64") # '1234Kochfeld'
+if [ $brightness_in_percent -gt 0 ]; then
+  command=$(echo "313233342d44696d3"$d1"3"$d2"3"$d3"2d") # create set light command to Fjäråskupan, e.g. "1234-Dim000-"
+fi
+
 #echo $command >> /home/pi/bluetooth/log
 retries=0
 while [ $retries -lt 20 ]; do
